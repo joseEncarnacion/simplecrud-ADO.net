@@ -12,7 +12,9 @@ namespace MantenimientoClientes
         }
 
         CEclientes clienteEntidad= new CEclientes();
-        CNcliente clienteNeg = new CNcliente(); 
+        CNcliente clienteNeg = new CNcliente();
+        int idclient;
+        bool existe;
 
 
         private void InsertarDatos()
@@ -20,20 +22,24 @@ namespace MantenimientoClientes
 
         }
 
+        //Listar clientes
         private void listarDatos() { 
             DataSet ds =clienteNeg.listarCliente();
             dtaGridClientes.DataSource= ds.Tables["tbl"];
         }
 
+        //limpiar los inputs
         private void LimpiarInputs()
         {
             txtApellidos.Text= string.Empty;    
             txtNombre.Text= string.Empty;   
         }
 
+        //Evento guardar datos
         private void btn_Guardar_Click(object sender, EventArgs e)
         {
             bool resp;
+           
             clienteEntidad.nombreC = txtNombre.Text;   
             clienteEntidad.apellidoC = txtApellidos.Text;
             clienteEntidad.foto = pxbox.ImageLocation;
@@ -44,11 +50,18 @@ namespace MantenimientoClientes
             if(resp == false)
             {
                 return;
+            } 
+
+            if (!existe)
+            {
+                clienteNeg.CrearCliente(clienteEntidad);
             }
-
-            clienteNeg.CrearCliente(clienteEntidad);
-
-
+            else
+            {
+                clienteEntidad.id = idclient;
+                clienteNeg.CN_ActualizarCliente(clienteEntidad);
+            }
+            listarDatos();
             LimpiarInputs();
         }
 
@@ -90,10 +103,29 @@ namespace MantenimientoClientes
 
         private void dtaGridClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            idclient = (int)dtaGridClientes.CurrentRow.Cells["idCliente"].Value;
+           
             txtNombre.Text = dtaGridClientes.CurrentRow.Cells["nombre"].Value.ToString();
             txtApellidos.Text = dtaGridClientes.CurrentRow.Cells["apellido"].Value.ToString();
-            pxbox.Load(dtaGridClientes.CurrentRow.Cells["foto"].Value.ToString());  
-            
+            pxbox.Load(dtaGridClientes.CurrentRow.Cells["foto"].Value.ToString());
+           
+            if ((int)dtaGridClientes.CurrentRow.Cells["idCliente"].Value > 0)
+            {
+                existe = true;
+                panelViewCliente.Visible = false;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("¿Desea Eliminar el resgistro?","Titulo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //clienteEntidad.id = idclient;
+                MessageBox.Show(idclient +"");
+                clienteNeg.CN_ElimnarCliente(idclient);
+            }
+
+            listarDatos();
         }
     }
 }

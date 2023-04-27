@@ -42,6 +42,7 @@
             this.panelViewCliente = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dtaGridClientes = new System.Windows.Forms.DataGridView();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.panelcreateCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pxbox)).BeginInit();
             this.panelViewCliente.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             this.panelcreateCliente.BackColor = System.Drawing.Color.DarkCyan;
             this.panelcreateCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelcreateCliente.Controls.Add(this.btnEliminar);
             this.panelcreateCliente.Controls.Add(this.label2);
             this.panelcreateCliente.Controls.Add(this.label1);
             this.panelcreateCliente.Controls.Add(this.pxbox);
@@ -134,7 +136,7 @@
             this.btn_Guardar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_Guardar.Location = new System.Drawing.Point(189, 452);
             this.btn_Guardar.Name = "btn_Guardar";
-            this.btn_Guardar.Size = new System.Drawing.Size(160, 41);
+            this.btn_Guardar.Size = new System.Drawing.Size(119, 41);
             this.btn_Guardar.TabIndex = 3;
             this.btn_Guardar.Text = "Save";
             this.btn_Guardar.UseVisualStyleBackColor = false;
@@ -182,7 +184,7 @@
             this.panelViewCliente.Controls.Add(this.label3);
             this.panelViewCliente.Controls.Add(this.dtaGridClientes);
             this.panelViewCliente.Cursor = System.Windows.Forms.Cursors.PanWest;
-            this.panelViewCliente.Location = new System.Drawing.Point(193, 93);
+            this.panelViewCliente.Location = new System.Drawing.Point(193, 97);
             this.panelViewCliente.Name = "panelViewCliente";
             this.panelViewCliente.Size = new System.Drawing.Size(600, 532);
             this.panelViewCliente.TabIndex = 10;
@@ -209,6 +211,21 @@
             this.dtaGridClientes.Size = new System.Drawing.Size(580, 337);
             this.dtaGridClientes.TabIndex = 0;
             this.dtaGridClientes.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtaGridClientes_CellContentDoubleClick);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEliminar.Location = new System.Drawing.Point(315, 452);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(119, 41);
+            this.btnEliminar.TabIndex = 10;
+            this.btnEliminar.Text = "Delete";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // MantCliente
             // 
@@ -249,5 +266,6 @@
         private Panel panelViewCliente;
         private Label label3;
         private DataGridView dtaGridClientes;
+        private Button btnEliminar;
     }
 }

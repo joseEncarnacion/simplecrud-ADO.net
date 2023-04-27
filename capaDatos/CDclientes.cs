@@ -80,7 +80,7 @@ namespace capaDatos
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_crearCliente", conn);
+                SqlCommand cmd = new SqlCommand("sp_ActualizarCliente", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id", cl.id);
                 cmd.Parameters.AddWithValue("@nom", cl.nombreC);
@@ -92,7 +92,7 @@ namespace capaDatos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar datos" + ex);
+                MessageBox.Show("Error al Actualizar datos" + ex);
 
             }
             finally
@@ -105,18 +105,18 @@ namespace capaDatos
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("", conn);
+                SqlCommand cmd = new SqlCommand("sp_eliminarCliente", conn);
                 cmd.CommandType= CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id", id);
                 if (conn.State == ConnectionState.Open) conn.Close();
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("");
+                MessageBox.Show("Cliente eliminado ");
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error al insertar datos" + ex);
+                MessageBox.Show("Error al Eliminar datos" + ex);
                 
             }
             finally
